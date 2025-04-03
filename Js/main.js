@@ -20,64 +20,66 @@ console.log(
 
 if (
   nombre == nombre2 ||
-  segundonombre == segundonombre2 || 
+  segundonombre == segundonombre2 ||
   nombre == segundonombre2 ||
-  segundonombre == nombre2 
+  segundonombre == nombre2
 ) {
   console.log("Hubo coincidencias en los nombres");
-  const color = prompt("Hubo coincidencias en uno de los nombres, por favor escriba un color para destacarlos:");
+  const color = prompt(
+    "Hubo coincidencias en uno de los nombres, por favor escriba un color para destacarlos:"
+  );
 
   if (color) {
-      if (nombre === nombre2) {
-          document.getElementById("name").style.color = color;
-          document.getElementById("name2").style.color = color;
-      }
-      if (segundonombre === segundonombre2) {
-          document.getElementById("secondname").style.color = color;
-          document.getElementById("secondname2").style.color = color;
-      }
-      if (nombre === segundonombre2) {
-          document.getElementById("name").style.color = color;
-          document.getElementById("secondname2").style.color = color;
-      }
-      if (segundonombre === nombre2) {
-          document.getElementById("secondname").style.color = color;
-          document.getElementById("name2").style.color = color;
-      }
+    if (nombre === nombre2) {
+      document.getElementById("name").style.color = color;
+      document.getElementById("name2").style.color = color;
     }
+    if (segundonombre === segundonombre2) {
+      document.getElementById("secondname").style.color = color;
+      document.getElementById("secondname2").style.color = color;
+    }
+    if (nombre === segundonombre2) {
+      document.getElementById("name").style.color = color;
+      document.getElementById("secondname2").style.color = color;
+    }
+    if (segundonombre === nombre2) {
+      document.getElementById("secondname").style.color = color;
+      document.getElementById("name2").style.color = color;
+    }
+  }
 } else {
   console.log("No hubo coincidencias en los nombres de los integrantes");
   confirm("Desea comparar los apellidos de los integrantes?");
 }
 
-
 if (
   apellido == apellido2 ||
-  segundoapellido == segundoapellido2 || 
+  segundoapellido == segundoapellido2 ||
   apellido == segundoapellido2 ||
   segundoapellido == apellido2
 ) {
   console.log("Hubo coincidencias en los apellidos");
-  const color = prompt("Hubo coincidencias en uno de los apellidos, por favor escriba un color para destacarlos:");
+  const color = prompt(
+    "Hubo coincidencias en uno de los apellidos, por favor escriba un color para destacarlos:"
+  );
   if (color) {
     if (apellido === apellido2) {
-        document.getElementById("lastname").style.color = color;
-        document.getElementById("lastname2").style.color = color;
+      document.getElementById("lastname").style.color = color;
+      document.getElementById("lastname2").style.color = color;
     }
     if (segundoapellido === segundoapellido2) {
-        document.getElementById("secondlastname").style.color = color;
-        document.getElementById("secondlastname").style.color = color;
+      document.getElementById("secondlastname").style.color = color;
+      document.getElementById("secondlastname").style.color = color;
     }
     if (apellido === segundoapellido2) {
-        document.getElementById("lastname").style.color = color;
-        document.getElementById("secondlastname2").style.color = color;
+      document.getElementById("lastname").style.color = color;
+      document.getElementById("secondlastname2").style.color = color;
     }
     if (segundoapellido === apellido2) {
-        document.getElementById("secondlastname").style.color = color;
-        document.getElementById("lastname2").style.color = color;
+      document.getElementById("secondlastname").style.color = color;
+      document.getElementById("lastname2").style.color = color;
     }
   }
-}
-else{
+} else {
   console.log("No hubo coincidencias en los apellidos de los integrantes");
 }
