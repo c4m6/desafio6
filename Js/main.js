@@ -1,5 +1,14 @@
 console.log(document.title);
 
+/*
+* Clase Persona
+* Attributos: Array [{Name1, Name2, Lastname1, Lastname2}]
+* Method: 
+*         -getText: stg [Text]
+*         -setText: stg [Text]
+*         -getTagID: stg [TagID]
+*         -setTagID: stg [TagID]
+*/
 class Person {
   // Atributos: name1, name2, lastname1, lastname2
   #attributes = {};
@@ -27,13 +36,42 @@ class Person {
 }
 
 /*
- * Genera log con Nombre 1, Nombre 2, Apellido 1, Apllido 2
+ * Genera log con los nombres de los integrantes
  */
-const CreateLog = (person) => {
-  console.log(
-    `Integrante: ${person.get("name1").getText()} ${person.get("name2").getText()} ${person.get("lastname1").getText()} ${person.get("lastname2").getText()}`
-  );
+const createLog = (lstPerson) => {
+  const linea1 = "-----";
+  const linea2 = "---";
+  const linea3 = fnIntegranteGetString(lstPerson);
+ 
+  console.log(`${linea1}${linea3}\n${linea1}\n${linea2}`)
+
 };
+
+/*
+* Recive una lista [Person(),...], y devuelve un string
+* con la concatenación de Name1, Name2, Lastname1, Lastname2
+* con salto de linea, para cada elemento de la lista.
+*/
+function fnIntegranteGetString (param) {
+  let stg = "";
+
+  for (let index = 0; index < param.length; index++) {
+    const element = param[index];                            // Elemento de la lista
+    const name1 = element.get("name1").getText();            // Nombre 1
+    const name2 = element.get("name2").getText();            // Nombre 2
+    const lastname1 = element.get("lastname1").getText();    // Apellido 1
+    const lastname2 = element.get("lastname2").getText();    // Apellido 2
+
+
+    stg = stg.concat(`\n`)
+             .concat(name1 ? `${name1}`: "")
+             .concat(name2 ? ` ${name2}` : "")
+             .concat(lastname1 ? ` ${lastname1}` : "")
+             .concat(lastname2 ? ` ${lastname2}` : "")
+  }
+  return stg;
+}
+
 
 /*
  * Devuelve una lista de los integrantes que se encuentra dentro del
@@ -81,53 +119,71 @@ const getIntegrantes = () => {
   return lista_integrantes;
 };
 
+/*
+* Informo de los integrantes y pregunto si hay coincidencias
+*/
 const informarIntegrantes = () => {
-  let integrantes = getIntegrantes();
-
-  for (let index = 0; index < integrantes.length; index++) {
-    const person = integrantes[index];
-    CreateLog(person);
-  }
+  const integrantes = getIntegrantes();
+  createLog(integrantes);
 
   compareNames(integrantes[0], integrantes[1]);
   compareLastnames(integrantes[0], integrantes[1]);
 
 };
 
+// Promp para elegir el color
 function promptColor(msg){
   return color = prompt(msg);
 }
 
+// Compara NAME1 y NAME2 de dos personas [Person()]
 function compareNames(person1, person2) {
   const MSG   = "Hubo coincidencias en uno de los nombres, por favor escriba un color para destacarlos:";
   const NAME1 = 'name1';
   const NAME2 = 'name2';
 
-  const lstPerson1 = [ [person1.get(NAME1).getText(), person1.get(NAME2).getText()],
-                       [person1.get(NAME1).getTagId(), person1.get(NAME2).getTagId()]
-                     ];
-  const lstPerson2 = [ [person2.get(NAME1).getText(), person2.get(NAME2).getText()],
-                       [person2.get(NAME1).getTagId(), person2.get(NAME2).getTagId()]
-                     ];
+  if( !compareText( getListTextTagID(person1, NAME1, NAME2),
+               getListTextTagID(person2, NAME1, NAME2),
+               MSG ) 
+    ){
+  
+     console.log("No hubo coincidencias en los nombres de los integrantes");
+     confirm("Desea comparar los apellidos de los integrantes?");
+    }
 
-  compareText(lstPerson1, lstPerson2, MSG)
 }
 
+// Compara LASTNAME1 y LASTNAME2 de dos personas [Person()]
 function compareLastnames(person1, person2) {
   const MSG   = "Hubo coincidencias en uno de los apellidos, por favor escriba un color para destacarlos:";
   const NAME1 = 'lastname1';
   const NAME2 = 'lastname2';
 
-  const lstPerson1 = [ [person1.get(NAME1).getText(), person1.get(NAME2).getText()],
-                       [person1.get(NAME1).getTagId(), person1.get(NAME2).getTagId()]
-                     ];
-  const lstPerson2 = [ [person2.get(NAME1).getText(), person2.get(NAME2).getText()],
-                       [person2.get(NAME1).getTagId(), person2.get(NAME2).getTagId()]
+  if( !compareText( getListTextTagID(person1, NAME1, NAME2),
+               getListTextTagID(person2, NAME1, NAME2),
+               MSG ) 
+    ){
+  
+     console.log("No hubo coincidencias en los nombres de los integrantes");
+     confirm("Desea comparar los apellidos de los integrantes?");
+    }}
+
+/*
+* Devuelve una lista [Text, TagID]
+*/
+function getListTextTagID(person, name1, name2 ){
+
+  const lstTextTagID = [ [person.get(name1).getText(), person.get(name2).getText()],
+                       [person.get(name1).getTagId(), person.get(name2).getTagId()]
                      ];
 
-  compareText(lstPerson1, lstPerson2, MSG)
+  return lstTextTagID;
 }
 
+/*
+* Comparar texto en una lista [Text, TagID] y settea un color
+* utilizando el TagID.
+*/
 function compareText(lstPerson1, lstPerson2, msg) {
 
 for (let a = 0; a < lstPerson1[0].length; a++) {
@@ -139,16 +195,30 @@ for (let a = 0; a < lstPerson1[0].length; a++) {
 
       document.getElementById(`${lstPerson1[1][a]}`).style.color = color; // Ex. "#ff0000"
       document.getElementById(`${lstPerson2[1][b]}`).style.color = color;
+
+      return true;
     }
      
   }
 }
+
 return false;
 }
+
+
+
+
+// INICIO DE LA CONSULTA  
 
 console.log(document.title);
 
 informarIntegrantes();
+
+
+
+
+
+
 
 /*
 const integrante = document.getElementById("integrante").textContent;
