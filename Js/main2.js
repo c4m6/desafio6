@@ -1,7 +1,12 @@
+
 // INICIO DE LA CONSULTA
 console.log(document.title);
 
-informarIntegrantes();
+let contadorIntegrante;
+
+// Set Forms
+setContadorIntegrante(1);
+setFormName(contadorIntegrante);
 
 
 
@@ -128,91 +133,45 @@ function promptColor(msg) {
   return (color = prompt(msg));
 }
 
-
-
-/* 
-const integrante = document.getElementById("integrante").textContent;
-const nombre = document.getElementById("name").textContent;
-const segundonombre = document.getElementById("secondname").textContent;
-const apellido = document.getElementById("lastname").textContent;
-const segundoapellido = document.getElementById("secondlastname").textContent;
-console.log(
-  `${integrante}: ${nombre} ${segundonombre} ${apellido} ${segundoapellido}`
-);
-
-const integrante2 = document.getElementById("integrante2").textContent;
-const nombre2 = document.getElementById("name2").textContent;
-const segundonombre2 = document.getElementById("secondname2").textContent;
-const apellido2 = document.getElementById("lastname2").textContent;
-const segundoapellido2 = document.getElementById("secondlastname2").textContent;
-console.log(
-  `${integrante2}: ${nombre2} ${segundonombre2} ${apellido2} ${segundoapellido2}`
-);
-
-
-if (
-  nombre == nombre2 ||
-  segundonombre == segundonombre2 ||
-  nombre == segundonombre2 ||
-  segundonombre == nombre2
-) {
-  console.log("Hubo coincidencias en los nombres");
-  const color = prompt(
-    "Hubo coincidencias en uno de los nombres, por favor escriba un color para destacarlos:"
-  );
-
-  if (color) {
-    if (nombre === nombre2) {
-      document.getElementById("name").style.color = color;
-      document.getElementById("name2").style.color = color;
-    }
-    if (segundonombre === segundonombre2) {
-      document.getElementById("secondname").style.color = color;
-      document.getElementById("secondname2").style.color = color;
-    }
-    if (nombre === segundonombre2) {
-      document.getElementById("name").style.color = color;
-      document.getElementById("secondname2").style.color = color;
-    }
-    if (segundonombre === nombre2) {
-      document.getElementById("secondname").style.color = color;
-      document.getElementById("name2").style.color = color;
-    }
-  }
-} else {
-  console.log("No hubo coincidencias en los nombres de los integrantes");
-  confirm("Desea comparar los apellidos de los integrantes?");
+//---> Settea nombre formulario
+function setFormName(integranteNo) {
+  const name = document.getElementById("form-container-name");
+  name.innerText = `Integrante ${integranteNo}`;
 }
 
-if (
-  apellido == apellido2 ||
-  segundoapellido == segundoapellido2 ||
-  apellido == segundoapellido2 ||
-  segundoapellido == apellido2
-) {
-  console.log("Hubo coincidencias en los apellidos");
-  const color = prompt(
-    "Hubo coincidencias en uno de los apellidos, por favor escriba un color para destacarlos:"
-  );
-  if (color) {
-    if (apellido === apellido2) {
-      document.getElementById("lastname").style.color = color;
-      document.getElementById("lastname2").style.color = color;
-    }
-    if (segundoapellido === segundoapellido2) {
-      document.getElementById("secondlastname").style.color = color;
-      document.getElementById("secondlastname").style.color = color;
-    }
-    if (apellido === segundoapellido2) {
-      document.getElementById("lastname").style.color = color;
-      document.getElementById("secondlastname2").style.color = color;
-    }
-    if (segundoapellido === apellido2) {
-      document.getElementById("secondlastname").style.color = color;
-      document.getElementById("lastname2").style.color = color;
-    }
-  }
-} else {
-  console.log("No hubo coincidencias en los apellidos de los integrantes");
+//---> Set contador
+function setContadorIntegrante(no) {
+  contadorIntegrante = no;
 }
- */
+
+//---> Handle functions OnSubmit
+// --- BUTTON ACTION ---
+//       ---------
+function handleSubmit(event) {
+  event.preventDefault();
+  const formInputsValues = {};
+
+  formInputsValues.name1 = document.getElementById("form-inputs-name1").value;
+  formInputsValues.name2 = document.getElementById("form-inputs-name2").value;
+  formInputsValues.lastname1 = document.getElementById("form-inputs-lastname1").value;
+  formInputsValues.lastname2 = document.getElementById("form-inputs-lastname2").value;
+
+  // Actualizar contandor de integrantes y su valor
+  createNewIntegrante(formInputsValues);
+  contadorIntegrante == 2 ? setContadorIntegrante(1) : setContadorIntegrante(2);
+  setFormName(contadorIntegrante);
+
+  // Logs
+  informarIntegrantes();
+}
+
+//---> Crea un nuevo integrante
+function createNewIntegrante(param) {
+  const integrantes = document.getElementById("integrantes").getElementsByTagName("dl");  // Recupero datos del formulario
+  const rows = contadorIntegrante == 1 ? 0 : 1; // contadorIntegrante - 1
+
+  integrantes[rows].getElementsByTagName("dd")[0].innerText = param.name1;
+  integrantes[rows].getElementsByTagName("dd")[1].innerText = param.name2;
+  integrantes[rows].getElementsByTagName("dd")[2].innerText = param.lastname1;
+  integrantes[rows].getElementsByTagName("dd")[3].innerText = param.lastname2;
+}

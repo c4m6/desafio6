@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <script defer src="Js/main2.js"></script>
+  </head>
+
+  <body>
+    <h1>Ejercicio</h1>
+    <div class="content">
+
+      <!-- Formularios -->
+      <section id="form">
+        <form
+          class="form-container"
+          id="form-container"
+          onsubmit="handleSubmit(event)"
+        >
+          <h3 id="form-container-name"></h3>
+          <div class="form-inputs">
+            <!-- Names -->
+            <div class="form-inputs-names">
+              <label for="form-inputs-name1">Primer nombre</label>
+              <input
+                id="form-inputs-name1"
+                name="form-inputs-name1"
+                type="text"
+              />
+              <label for="form-inputs-name2">Segundo nombre</label>
+              <input
+                id="form-inputs-name2"
+                name="form-inputs-name2"
+                type="text"
+              />
+            </div>
+            <!-- Lastnames -->
+            <div class="form-inputs-lastnames">
+              <label for="form-inputs-lastname1">Primer Apellido</label>
+              <input
+                id="form-inputs-lastname1"
+                name="form-inputs-lastname1"
+                type="text"
+              />
+              <label for="form-inputs-lastname2">Segundo Apellido</label>
+              <input
+                id="form-inputs-lastname2"
+                name="form-inputs-lastname2"
+                type="text"
+              />
+            </div>
+          </div>
+          <!-- Buttons -->
+          <div class="form-container-button">
+            <button type="submit" class="submit-button">
+              Completar Integrante
+            </button>
+            <button type="reset" class="reset-button">
+              Resetear formulario
+            </button>
+          </div>
+        </form>
+      </section>
+
+
+      <!-- Resumen de Integrantes -->
+      <section id="integrantes">
+        <div class="content-2">
+        <h2 id="integrante">Integrante 1</h2>
+      <dl>
+        <dt>Primer nombre</dt>
+        <dd id="name">Prueba 1</dd>
+        <dt>Segundo nombre</dt>
+        <dd id="secondname">Prueba 1</dd>
+        <dt>Primer Apellido</dt>
+        <dd id="lastname">Prueba 1</dd>
+        <dt>Segundo Apellido</dt>
+        <dd id="secondlastname">Prueba 1</dd>
+      </dl>
+    </div>
+    
+      <h2 id="integrante2">Integrante 2</h2>
+      <dl>
+        <dt>Primer nombre</dt>
+        <dd id="name2">Prueba 2</dd>
+        <dt>Segundo nombre</dt>
+        <dd id="secondname2">Prueba 2</dd>
+        <dt>Segundo Apellido</dt>
+        <dd id="lastname2">Prueba 2</dd>
+        <dt>Segundo Apellido</dt>
+        <dd id="secondlastname2">Prueba 2</dd>
+      </dl>
+    </div>
+  </section>
+
+  </body>
+</html>
