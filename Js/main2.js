@@ -35,8 +35,8 @@ function createLog(lstIntegrante) {
         .concat(`\n`)
         .concat(element.name1 ? `${element.name1}` : "")
         .concat(element.name2 ? ` ${element.name2}` : "")
-        .concat(element.lastname1 ? ` ${element.lastname1}` : "")
-        .concat(element.lastname2 ? ` ${element.lastname2}` : "");
+        .concat(element.lastname1 ? ` ${element.lastname1.toUpperCase() }` : "")
+        .concat(element.lastname2 ? ` ${element.lastname2.toUpperCase()}` : "");
     }
 
     return stg;
